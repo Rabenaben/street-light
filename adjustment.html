@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"> <!--Character encoding system-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/logologo.png">
+    <link rel="stylesheet" href="adjustment.css"> <!--link for css ng login page-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title> RongGlow </title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+</head>
+
+<body>
+
+    <div>
+        <img src="assets/logologo.png" class="logo" width="40px">
+
+        <p class="title">RongGlow</p>
+    </div>
+
+    <div class="wrapper">
+        <div class="container">
+            <label class="switch">
+                <input type="checkbox" id="toggleSwitch">
+                <span class="slider"></span>
+            </label>
+            <p id="enableButton">MANUAL ON/OFF BUTTON</p>
+    
+            <label class="switch2">
+                <input type="checkbox" id="toggleSwitch2">
+                <span class="slider2"></span>
+            </label>
+            <p id="enableButton2">AUTOMATIC ADJUST</p>
+        </div>
+    
+        <div id="map"></div>
+    </div>    
+
+    <script src="adjustment.js"></script>
+
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
+    <script>
+
+        var map = L.map('map').setView([14.19897, 121.1838], 20);
+        var tileLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', { attribution: "OSM" }).addTo(map);
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,212 @@
+*
+{
+  margin: 0;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; 
+  height: 100%;
+  width: 100%;
+}
+
+/* Background Image */
+.toppic {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100vw; 
+    height: 100vh; 
+    background-image: url('assets/ronggotbig.png');
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat; 
+    z-index: -1; 
+}
+
+/* Logo */
+.logo {
+    position: absolute;
+    top: 90px;
+    left: 80px;
+    width: 40px;
+}
+
+@media screen and (max-width: 1200px) {
+    .logo {
+        width: 30px;
+        top: 25px;
+        left: 18px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .logo {
+        width: 25px;
+        top: 15px;
+        left: 10px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .logo {
+        width: 25px;
+        top: 10px;
+        left: 8px;
+    }
+}
+
+/* Title */
+.title {
+    position: absolute;
+    top: 93px;
+    left: 130px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 23px;
+    font-weight: bold;
+    font-style: italic;
+    color: rgb(255, 255, 255);
+}
+
+@media screen and (max-width: 1200px) {
+    .title {
+        font-size: 17px;
+        top: 30px;
+        left: 55px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .title {
+        font-size: 12px;
+        top: 20px;
+        left: 40px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .title {
+        font-size: 10px;
+        top: 15px;
+        left: 20px;
+    }
+}
+
+/* Title 2 */
+.title2 {
+    position: absolute;
+    top: 145px;
+    left: 80px;
+    font-family: fantasy;
+    color: rgb(255, 255, 255);
+    font-size: 60px;
+}
+
+@media screen and (max-width: 1200px) {
+    .title2 {
+        font-size: 45px;
+        top: 65px;
+        left: 20px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .title2 {
+        font-size: 28px;
+        top: 59px;
+        left: 15px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .title2 {
+        font-size: 20px;
+        top: 40px;
+        left: 10px;
+    }
+}
+
+/* Definition Paragraph */
+.def {
+    position: absolute;
+    top: 235px;
+    left: 80px;
+    right: 3%;
+    font-family: system-ui, 'Segoe UI', Roboto, Oxygen, Ubuntu, 'Open Sans', 'Helvetica Neue';
+    font-weight: normal;
+    color: rgb(255, 255, 255);
+    font-size: 22px;
+}
+
+@media screen and (max-width: 1200px) {
+    .def {
+        font-size: 15px;
+        top: 130px;
+        left: 20px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .def {
+        font-size: 15px;
+        top: 110px;
+        left: 15px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .def {
+        font-size: 8px;
+        top: 90px;
+        left: 10px;
+    }
+}
+
+/* Scroll Button */
+.scroll {
+    position: absolute;
+    top: 350px;
+    left: 80px;
+    background-color: transparent;
+    border: 2px solid #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.scroll:hover {
+    background-color: rgb(96, 107, 255);
+    color: #fff;
+}
+
+@media screen and (max-width: 1200px) {
+    .scroll {
+        font-size: 20px;
+        top: 205px;
+        left: 20px;
+        padding: 10px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .scroll {
+        font-size: 19px;
+        top: 210px;
+        left: 15px;
+        padding: 8px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .scroll {
+        font-size: 8px;
+        top: 150px;
+        left: 10px;
+        padding: 5px;
+    }
+}

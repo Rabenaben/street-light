@@ -1,0 +1,100 @@
+*
+{
+  margin: 0;
+}
+
+.toppic {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100vw; 
+  height: 100vh; 
+  background-image: url('assets/ronggotbig.png');
+  background-size: cover; 
+  background-position: center;
+  background-repeat: no-repeat; 
+  z-index: -1; 
+}
+
+.logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+
+.title{
+  position: absolute;
+  top: 25px;
+  left: 65px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 23px;
+  font-weight: bolder;
+  font-style: italic;
+  color: #ffffff;
+}
+
+.loginform {
+  padding-bottom: 10px;
+}
+
+.container3 {
+  position: absolute;
+  background-color: #a1b6ff;
+  width: 90%; 
+  max-width: 400px; 
+  height: auto; 
+  padding: 50px 20px; 
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 10px 40px 0 rgba(0, 0, 0, 0.19);
+  font-family: 'Segoe UI';
+}
+
+input[type=text], input[type=password] {
+  width: 100%; 
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #ffffff;
+  color: #3D52A0;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%; /* Full width for responsive design */
+}
+
+button:hover {
+  opacity: 0.8;
+  color: #ffffff;
+  background-color: #3D52A0;
+}
+
+span.psw {
+  float: right;
+}
+
+@media screen and (max-width: 600px) {
+  .container3 {
+      width: 95%; 
+      padding: 30px 15px; 
+  }
+
+  button, input[type=text], input[type=password] {
+      font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container3 {
+      width: 50%; 
+      max-width: 400px; 
+      padding: 50px; 
+  }
+}

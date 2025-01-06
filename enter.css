@@ -1,0 +1,118 @@
+* {
+  margin: 0;
+  box-sizing: border-box; /* Include padding and border in element's width/height */
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  display: flex; /* Center everything */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #f9f9f9; /* Optional background color */
+}
+
+.toppic {
+  height: 100vh;
+  width: 100vw;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute; /* Full screen image behind content */
+  top: 0;
+  left: 0;
+  z-index: -1; /* Place it behind everything */
+}
+
+.logo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+@media screen and (max-width: 1200px) {
+  .logo {
+    width: 30px;
+    top: 25px;
+    left: 18px;
+  }
+}
+
+.title {
+  position: absolute;
+  top: 25px;
+  left: 65px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 23px;
+  font-weight: bolder;
+  font-style: italic;
+  color: #ffff;
+}
+
+@media screen and (max-width: 1200px) {
+  .title {
+    font-size: 15px;
+    top: 30px;
+    left: 50px;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  text-align: center;
+  width: 300px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  position: relative;
+  z-index: 1; /* Keep container above background */
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    width: 80%; /* Adjust width on small screens */
+  }
+}
+
+#passwordInput {
+  margin: 10px 0;
+  padding: 8px;
+  width: 80%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#submitPassword {
+  padding: 8px 15px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#submitPassword:hover {
+  background-color: #0056b3;
+}
+
+.admin {
+  width: 200px;
+  margin: 20px auto; /* Center and add spacing */
+}
+
+@media screen and (max-width: 480px) {
+  .admin {
+    width: 50%; /* Adjust size on smaller screens */
+  }
+}

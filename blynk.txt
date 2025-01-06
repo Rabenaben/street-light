@@ -1,0 +1,118 @@
+#define BLYNK_TEMPLATE_ID "TMPL6NM1yXCrS"
+#define BLYNK_TEMPLATE_NAME "Street Light"
+#define BLYNK_AUTH_TOKEN "yCQ0wCe_auNVGWPioPds5kzVJI9GiWy7"
+
+#include <TinyGPS++.h>
+#include <SoftwareSerial.h>
+#include <ESP8266WiFi.h>
+#include <BlynkSimpleEsp8266.h>
+
+TinyGPSPlus gps;
+SoftwareSerial SerialGPS(4, 5); 
+
+// WiFi credentials
+const char* ssid = "HUAWEI-Rq2W";
+const char* password = "YZqvhH2E";
+
+// Pin definitions
+#define RELAY_PIN D0        // Pin connected to the relay module
+#define MOTION_PIN D7       // Pin connected to the motion sensor
+#define LDR_PIN A0          // Pin connected to the LDR sensor
+
+// Blynk variables
+bool isAutomatic = false;   // Tracks whether automatic mode is enabled
+bool manualOverride = false; // Tracks whether manual mode is active
+
+// Timer for motion detection
+unsigned long lastMotionTime = 0;       // Tracks the last time motion was detected
+const unsigned long motionTimeout = 10000; // 10 seconds timeout
+
+void setup() {
+  Serial.begin(9600);
+  SerialGPS.begin(9600);
+
+  pinMode(RELAY_PIN, OUTPUT);
+  pinMode(MOTION_PIN, INPUT);
+  digitalWrite(RELAY_PIN, HIGH); // Default to OFF (Relay is active LOW)
+
+  // Connect to Wi-Fi
+  Serial.println();
+  Serial.print("Connecting to WiFi...");
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println("\nWiFi connected");
+
+  // Connect to Blynk
+  Blynk.begin(BLYNK_AUTH_TOKEN, ssid, password);
+}
+
+// Manual control via V0
+BLYNK_WRITE(V0) {
+  int relayState = param.asInt(); // Get button state from Blynk
+  manualOverride = true;          // Manual mode is active
+  digitalWrite(RELAY_PIN, relayState ? LOW : HIGH); // Relay is active LOW
+}
+
+// Automatic mode toggle via V1
+BLYNK_WRITE(V1) {
+  isAutomatic = param.asInt(); // Enable or disable automatic mode
+  manualOverride = false;      // Reset manual override when switching modes
+}
+
+void loop() {
+  Blynk.run();
+
+  // GPS data processing
+  while (SerialGPS.available() > 0) {
+    if (gps.encode(SerialGPS.read())) {
+      if (gps.location.isValid()) {
+        // Send location to Blynk
+        Blynk.virtualWrite(V2, gps.location.lat());
+        Blynk.virtualWrite(V3, gps.location.lng());
+      }
+    }
+  }
+
+  // Automatic mode operation
+  if (isAutomatic && !manualOverride) {
+    checkSensors();
+  }
+}
+
+void checkSensors() {
+  int ldrValue = analogRead(LDR_PIN);       // Read LDR value
+  int motionDetected = digitalRead(MOTION_PIN); // Read motion sensor state
+
+  // Define light threshold for darkness
+  const int lightThreshold = 800;
+
+  // Check if it's dark
+  bool isDark = ldrValue > lightThreshold;
+
+  if (isDark) {
+    // Turn on light when dark
+    digitalWrite(RELAY_PIN, LOW); // Turn ON light (active LOW)
+
+    // Handle motion detection logic
+    if (motionDetected == LOW) { // Motion detected
+      lastMotionTime = millis(); // Reset the timer
+    } else if (millis() - lastMotionTime > motionTimeout) {
+      // Turn OFF light after 10 seconds of no motion
+      digitalWrite(RELAY_PIN, HIGH); // Turn OFF light
+    }
+  } else {
+    // Turn OFF light in a bright environment
+    digitalWrite(RELAY_PIN, HIGH);
+  }
+
+  // Debugging (optional)
+  Serial.print("LDR Value: ");
+  Serial.print(ldrValue);
+  Serial.print(" | Motion Detected: ");
+  Serial.print(motionDetected == LOW ? "YES" : "NO");
+  Serial.print(" | Time Since Last Motion: ");
+  Serial.println(millis() - lastMotionTime);
+}
